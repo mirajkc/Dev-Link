@@ -15,7 +15,7 @@ import MyProfile from './pages/MyProfile.jsx'
 import Developers from './pages/Developers.jsx'
 import Admin from './pages/admin/Admin.jsx'
 import { useAdminContext } from './context/adminAppContext.jsx'
-import AdminLogin from './components/admin/adminLogin.jsx'
+import AdminLogin from './components/admin/AdminLogin.jsx'
 import Search from './pages/Search.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 
