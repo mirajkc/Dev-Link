@@ -23,7 +23,8 @@ app.use(cookieParser());
 await connectDB();
 await connectCloudinary();
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173','https://dev-link-3nkhe39br-miraj-kcs-projects.vercel.app'];
+
 app.use(cors({
   origin: allowedOrigins,
   credentials: true
