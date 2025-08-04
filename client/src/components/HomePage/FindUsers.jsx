@@ -3,7 +3,7 @@ import { useAppContext } from '../../context/appContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const FindDevelopers = () => {
+const FindUsers = () => {
   const { theme, navigate } = useAppContext();
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -133,4 +133,4 @@ const FindDevelopers = () => {
   );
 };
 
-export default FindDevelopers;
+export default FindUsers;
