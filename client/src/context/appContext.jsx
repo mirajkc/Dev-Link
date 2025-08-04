@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -15,7 +16,7 @@ export const AppProvider = ({ children }) => {
 
 
   axios.defaults.withCredentials = true;
-  axios.defaults.baseURL = "http://localhost:5000/";
+  axios.defaults.baseURL = import.meta.env.VITE_SECRET_URL 
 
 const authenticate = async () => {
   try {
