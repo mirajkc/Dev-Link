@@ -9,12 +9,10 @@ It allows developers to showcase their projects, interact with others, and build
 
 - [About DevLink](#about-devlink)
 - [Features](#features)
+- [Backend Endpoints](#backend-endpoints)
 - [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Installation & Setup](#installation--setup)
-- [Roadmap](#roadmap)
-- [License](#license)
-
 ---
 
 ##  About DevLink
@@ -44,6 +42,10 @@ Whether you're a seasoned developer or just starting out, DevLink allows you to:
 - Like and interact with community content
 
 ---
+
+## Backend Endpoints 
+  Note: Backend is deployed separately. Some interactive features requiring backend integration may be under development or temporarily unavailable.
+  Backend API : https://dev-link-0om4.onrender.com/
 
 ##  Screenshots
 
