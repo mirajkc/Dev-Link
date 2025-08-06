@@ -232,88 +232,111 @@ const NavBar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="px-2 pt-2 pb-4 space-y-2">
-            
-            {/* Mobile Search */}
-            <div className="relative mb-4">
-              <input
-                type="text"
-                placeholder="Search for developers..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onKeyDown={handleSearch}
-                className={`w-full pl-4 pr-12 py-3 rounded-lg border transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  theme === 'dark'
-                    ? 'bg-gray-800 text-white border-gray-600 placeholder-gray-400'
-                    : 'bg-white text-gray-900 border-gray-300 placeholder-gray-500'
-                }`}
-              />
-              <button
-                onClick={handleSearchClick}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200 hover:bg-blue-500 hover:text-white"
-              >
-                <Search className="w-5 h-5" />
-              </button>
-            </div>
+        {/* Mobile Menu */}
+<div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+  <div className={`px-4 pt-4 pb-8 space-y-4 ${theme === 'dark' ? 'bg-gray-900/98' : 'bg-white/98'} backdrop-blur-md border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'} max-h-[85vh] overflow-y-auto`}>
 
-            {/* Mobile Navigation Links */}
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => {navigate(link.path);scrollTo(0,0)}}
-                className={`w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
-                  location.pathname === link.path
-                    ? 'bg-blue-500 text-white'
-                    : theme === 'dark'
-                    ? 'text-gray-300 hover:bg-gray-700'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                {link.name}
-              </button>
-            ))}
+    {/* Mobile Search */}
+    <div className="relative">
+      <input
+        type="text"
+        placeholder="Search developers..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={handleSearch}
+        className={`w-full pl-4 pr-12 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          theme === 'dark'
+            ? 'bg-gray-800 text-white border-gray-600 placeholder-gray-400'
+            : 'bg-white text-gray-900 border-gray-300 placeholder-gray-500'
+        }`}
+      />
+      <button
+        onClick={handleSearchClick}
+        className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-full hover:bg-blue-500 hover:text-white"
+      >
+        <Search className="w-5 h-5" />
+      </button>
+    </div>
 
-            {/* Mobile User Section */}
-            <div className="pt-4 border-t border-gray-200 dark:border-gray-700 bg-gray-800 ">
-              {login ? (
-                <div className="space-y-2">
-                  {userMenuItems.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => {
-                        if (item.action) {
-                          item.action();
-                        } else {
-                          navigate(item.path);
-                        };
-                        scrollTo(0,0)
-                      }}
-                      className={`w-full text-left px-4 py-3 rounded-lg text-base transition-colors duration-200 ${
-                        item.className || (theme === 'dark' ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100')
-                      }`}
-                    >
-                      {item.name}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <button
-                  onClick={() => navigate('/login')}
-                  className={`w-full px-4 py-3 rounded-lg text-base font-medium border transition-colors duration-200 ${
-                    theme === 'dark'
-                      ? 'border-gray-600 text-gray-300 hover:bg-blue-600 hover:text-white'
-                      : 'border-gray-300 text-gray-700 hover:bg-blue-500 hover:text-white'
-                  }`}
-                >
-                  Login
-                </button>
-              )}
+    {/* Main Navigation */}
+    <div className="space-y-2">
+      {navLinks.map((link) => (
+        <button
+          key={link.name}
+          onClick={() => {
+            navigate(link.path);
+            scrollTo(0, 0);
+          }}
+          className={`w-full text-left px-4 py-3 rounded-md text-sm font-medium transition ${
+            location.pathname === link.path
+              ? 'bg-blue-500 text-white'
+              : theme === 'dark'
+              ? 'text-gray-300 hover:bg-gray-700'
+              : 'text-gray-700 hover:bg-gray-100'
+          }`}
+        >
+          {link.name}
+        </button>
+      ))}
+    </div>
+
+    {/* Divider */}
+    <div className={`border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-300'}`} />
+
+    {/* User Account Section */}
+    <div className="space-y-2">
+      {login ? (
+        <>
+          {/* Profile Info */}
+          <div className="flex items-center space-x-3 px-4 py-3 rounded-md bg-opacity-20 backdrop-blur-sm shadow-sm border border-opacity-10">
+            <img src={profile_pic} alt="User" className="w-9 h-9 rounded-full" />
+            <div className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-200' : 'text-gray-900'}`}>
+              {userData.name || 'User'}
             </div>
           </div>
-        </div>
+
+          {/* User Actions */}
+          {userMenuItems.map((item) => (
+            <button
+              key={item.name}
+              onClick={() => {
+                if (item.action) {
+                  item.action();
+                } else {
+                  navigate(item.path);
+                }
+                scrollTo(0, 0);
+              }}
+              className={`w-full text-left px-4 py-3 rounded-md text-sm transition ${
+                item.name === 'Logout'
+                  ? theme === 'dark'
+                    ? 'text-red-400 hover:bg-red-900/20'
+                    : 'text-red-600 hover:bg-red-50'
+                  : theme === 'dark'
+                  ? 'text-gray-300 hover:bg-gray-700'
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {item.name}
+            </button>
+          ))}
+        </>
+      ) : (
+        <button
+          onClick={() => navigate('/login')}
+          className={`w-full px-4 py-3 rounded-md text-sm font-medium border ${
+            theme === 'dark'
+              ? 'border-gray-600 text-gray-300 hover:bg-blue-600 hover:text-white'
+              : 'border-gray-300 text-gray-700 hover:bg-blue-500 hover:text-white'
+          }`}
+        >
+          Login
+        </button>
+      )}
+    </div>
+  </div>
+</div>
+
       </div>
     </nav>
   );

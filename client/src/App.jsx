@@ -19,6 +19,7 @@ import AdminLogin from './components/admin/AdminLogin.jsx'
 import Search from './pages/Search.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 import Community from './pages/Community.jsx'
+import SingleCommunityPost from './pages/SingleCommunityPost.jsx'
 
 const App = () => {
   const {theme, setTheme} = useAppContext();
@@ -39,6 +40,7 @@ const App = () => {
         <Route path='/search' element={<Search />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='/community' element = { <Community />} />
+        <Route path='/community/post/:id' element = {<SingleCommunityPost />} />
       </Routes>
       <ThemeToggle />
       <Footer />

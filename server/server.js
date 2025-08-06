@@ -11,6 +11,7 @@ import userRouter from './route/userRoute.js';
 import likedislikeRoute from './route/LikeDislikeRoute.js';
 import commentRouter from './route/commentRoute.js';
 import adminRoute from './route/adminRoute.js';
+import communityRouter from './route/communityRoute.js';
 
 
 const app = express();
@@ -39,6 +40,7 @@ app.use('/api/project', projectRouter)
 app.use('/api/likedislike', likedislikeRoute)
 app.use('/api/comment', commentRouter)
 app.use('/api/admin', adminRoute)
+app.use('/api/community', communityRouter)
 
 
 app.listen(port, ()=>{
