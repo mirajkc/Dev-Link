@@ -3,8 +3,6 @@
 DevLink is a full-stack developer portfolio and social hub platform built with the **MERN Stack (MongoDB, Express, React, Node.js)**. 
 It allows developers to showcase their projects, interact with others, and build a connected tech community.
 
->  **Note:** The Community feature is currently under development and will be added soon!
-
 ##  Table of Contents
 
 - [About DevLink](#about-devlink)
@@ -23,7 +21,7 @@ Whether you're a seasoned developer or just starting out, DevLink allows you to:
 - Build a developer profile
 - Upload projects and portfolios
 - View, like and comment on other developers
-- Engage with the developer community *(coming soon)*
+- Engage with the developer community
 
 ---
 
