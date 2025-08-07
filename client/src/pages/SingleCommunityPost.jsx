@@ -90,7 +90,7 @@ const SingleCommunityPost = () => {
                       alt="User profile"
                       className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover ring-4 ring-white/20 shadow-lg"
                     />
-                    <div className={`${theme === 'dark' ? 'bg-green-500' : 'bg-green-400'} absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white`}></div>
+                   
                   </div>
                   <div className="flex-1 min-w-0">
                     <h2 className={`${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'} text-lg sm:text-xl font-bold truncate`}>
