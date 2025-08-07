@@ -328,7 +328,7 @@ export const generateComment = async(req,res)=> {
       })
     }
 
-    const content = await main(`${title} . Generate a short community post in this title`)
+    const content = await main(`${title} .Generate only the content (no introduction or explanation) of a short, engaging community post based on the following title: '[insert your title here]'. This post will be written by a user on my website and is intended to start a conversation or discussion among other users. Do not include any explanation, headers, or phrases like 'Here is your post'. Only generate the body text of the post in a friendly and natural tone.`)
      res.status(200).json({
       success: true,
       content,
