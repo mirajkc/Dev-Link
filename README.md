@@ -38,6 +38,8 @@ Whether you're a seasoned developer or just starting out, DevLink allows you to:
 - Post updates
 - Comment on posts
 - Like and interact with community content
+-  Automatically improves user portfolios using Gemini AI.
+-  Generates discussion-ready community posts based on titles provided by users.
 
 ---
 
