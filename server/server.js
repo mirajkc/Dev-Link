@@ -24,7 +24,7 @@ app.use(cookieParser());
 await connectDB();
 await connectCloudinary();
 
-const allowedOrigins = ['http://localhost:5173','https://dev-link-aowt-pdgol60jg-miraj-kcs-projects.vercel.app','https://dev-link-aowt-git-main-miraj-kcs-projects.vercel.app'];
+const allowedOrigins = ['http://localhost:5173','https://dev-link-aowt-pdgol60jg-miraj-kcs-projects.vercel.app','https://dev-link-aowt-git-main-miraj-kcs-projects.vercel.app','https://dev-link-aowt.vercel.app'];
 
 app.use(cors({
   origin: allowedOrigins,
