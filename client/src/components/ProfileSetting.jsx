@@ -120,6 +120,20 @@ const ProfileSetting = () => {
       setLoading(false);
     }
   };
+  const protfolioEnhancer = async() => {
+    try {
+      setLoading(true)
+      const {data} = await axios.post('/api/user/enhance' , {protfolio})
+      if(!data){
+        return toast.error(data.message)
+      }
+      setProtfolio(data.content)
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      setLoading(false)
+    }
+  }
 
   return (
     <div className={`min-h-screen p-4 transition-colors duration-300 ${
@@ -269,7 +283,7 @@ const ProfileSetting = () => {
             </div>
 
             {/* Portfolio Field - Fixed typo */}
-            <div className="space-y-2">
+            <div className="space-y-2 h-300 " >
               <label className="block text-sm font-semibold">
                 Portfolio
               </label>
@@ -277,7 +291,7 @@ const ProfileSetting = () => {
                 value={protfolio}
                 onChange={(e) => setProtfolio(e.target.value)}
                 rows={4}
-                className={`w-full px-4 py-3 rounded-lg border transition-all duration-300 focus:ring-2 focus:outline-none resize-vertical ${
+                className={`w-full h-full px-4 py-3 rounded-lg border transition-all duration-300 focus:ring-2 focus:outline-none resize-vertical ${
                   theme === 'dark'
                     ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500'
                     : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500'
@@ -286,43 +300,81 @@ const ProfileSetting = () => {
               />
             </div>
 
-            {/* Submit Button */}
-            
-            <div className="pt-4">
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full sm:w-auto px-8 py-3 rounded-lg font-semibold transition-all duration-300 focus:ring-2 focus:outline-none ${
-                  loading
-                    ? theme === 'dark'
-                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : theme === 'dark'
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500'
-                      : 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500'
-                } ${!loading && 'transform hover:scale-105 active:scale-95'}`}
-              >
-                {loading ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                        fill="none"
-                        strokeDasharray="32"
-                        strokeDashoffset="32"
-                      />
-                    </svg>
-                    Updating...
-                  </div>
-                ) : (
-                  'Update Profile'
-                )}
-              </button >
-            </div>
+
+<div className="pt-4 flex flex-col sm:flex-row gap-4 items-start">
+  {/* Update Profile Button */}
+  <button
+    type="submit"
+    disabled={loading}
+    className={`w-full sm:w-auto px-8 py-3 rounded-lg font-semibold transition-all duration-300 focus:ring-2 focus:outline-none ${
+      loading
+        ? theme === 'dark'
+          ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+        : theme === 'dark'
+          ? 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500'
+          : 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500'
+    } ${!loading && 'transform hover:scale-105 active:scale-95'}`}
+  >
+    {loading ? (
+      <div className="flex items-center justify-center gap-2">
+        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+            fill="none"
+            strokeDasharray="32"
+            strokeDashoffset="32"
+          />
+        </svg>
+        Updating...
+      </div>
+    ) : (
+      'Update Profile'
+    )}
+  </button>
+
+  {/* AI Enhancement Button */}
+  <button
+    onClick={protfolioEnhancer}
+    type="button"
+    disabled={loading}
+    className={`w-full sm:w-auto px-8 py-3 rounded-lg font-semibold transition-all duration-300 focus:ring-2 focus:outline-none ${
+      loading
+        ? theme === 'dark'
+          ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+        : theme === 'dark'
+          ? 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
+          : 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
+    } ${!loading && 'transform hover:scale-105 active:scale-95'}`}
+  >
+    {loading ? (
+      <div className="flex items-center justify-center gap-2">
+        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+            fill="none"
+            strokeDasharray="32"
+            strokeDashoffset="32"
+          />
+        </svg>
+        Enhancing Portfolio...
+      </div>
+    ) : (
+      'Enhance Portfolio With AI'
+    )}
+  </button>
+</div>
+
+
           </form>
           <div className='pl-6 mb-4' >
             <p>Looking for your project settings ? <span className='underline text-blue-500  cursor-pointer' onClick={()=>navigate('/projects')} >Click Here </span></p>

@@ -342,3 +342,36 @@ export const searchUser = async(req,res)=> {
       })
   }
 }
+
+//* enhance portfolio with ai
+
+
+
+import main from '../config/gemini.js';
+
+export const enhanceWithAI = async (req, res) => {
+  try {
+    const { protfolio } = req.body;
+
+    if (!protfolio) {
+      return res.status(400).json({
+        success: false,
+        message: "Error! AI only enhances a provided portfolio — it won't generate one from scratch.",
+      });
+    }
+
+    const content = await main(`${protfolio} . Please enhance the portfolio for this portfolio in simple text format.`);
+
+    res.status(200).json({
+      success: true,
+      content,
+    });
+
+  } catch (error) {
+    console.error("Error generating content:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error occurred while generating content",
+    });
+  }
+};

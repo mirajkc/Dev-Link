@@ -32,6 +32,22 @@ const CreateCommunityPost = () => {
     }
   }
 
+  const generateWithAi =async() => {
+    try {
+      setLoading(true)
+      const{data} = await axios.post('/api/community/genratepost',{title})
+      if(!data){
+        return toast.error(data.message)
+      }
+      setCommunityPost(data.content)
+      
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      setLoading(false)
+    }
+  }
+
   return (
     <div
       className={`max-w-xl mx-auto mt-10 p-6 rounded shadow-md mb-10 ${
@@ -78,13 +94,32 @@ const CreateCommunityPost = () => {
 
           <button
             type="submit"
-            className={`w-full py-2 px-4 rounded-md font-semibold hover:scale-104 transition-transform duration-300 ease-in-out ${
+            disabled={loading}
+            className={`w-full py-2 px-4 mb-4 rounded-md font-semibold hover:scale-104 transition-transform duration-300 ease-in-out ${
               theme === 'dark'
                 ? 'bg-purple-600 hover:bg-purple-700 text-white'
                 : 'bg-blue-600 hover:bg-blue-700 text-white'
             }`}
           >
             Submit Post
+          </button>
+          <button
+          onClick={generateWithAi}
+          disabled ={loading}
+          className={`w-full py-2 px-4 rounded-md font-semibold hover:scale-104 transition-transform duration-300 ease-in-out ${
+              theme === 'dark'
+                ? 'bg-green-600 hover:bg-green-700 text-white'
+                : 'bg-green-600 hover:bg-green-700 text-white'
+            }`}
+          
+          >
+           {
+            loading ? (
+              'Generating...'
+            ) : (
+              'Generate Content With Ai'
+            )
+           }
           </button>
         </form>
       )}

@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { deleteUserByID, getAllProfile, getUser, getUserByID, login, logout, register, searchUser, updateUser } from '../controller/userController.js';
+import { deleteUserByID, enhanceWithAI, getAllProfile, getUser, getUserByID, login, logout, register, searchUser, updateUser } from '../controller/userController.js';
 import { requestMonitor } from '../middleware/requestMonitor.js';
 import { authenticateUser } from '../middleware/authMiddleware.js';
 import { checkAuthForStatus } from '../middleware/checkAuthForStatus.js';
@@ -47,5 +47,9 @@ userRouter.post('/delete',adminAuth,deleteUserByID)
 
 //* search for the users 
 userRouter.get('/search',searchUser)
+
+//* enhance the content using ai 
+
+userRouter.post('/enhance' , authenticateUser, enhanceWithAI)
 
 export default userRouter;

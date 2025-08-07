@@ -5,6 +5,7 @@ import {
   createPost,
   deletePostById,
   fetchCommentById,
+  generateComment,
   getAllPost,
   getPostById,
   postOwner
@@ -32,5 +33,6 @@ communityRouter.get('/getallcomments/:id', fetchCommentById)
 
 // Get a single post by ID
 communityRouter.get('/getsinglepost/:id', getPostById)
+communityRouter.post('/genratepost', authenticateUser , generateComment)
 
 export default communityRouter

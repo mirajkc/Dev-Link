@@ -313,3 +313,30 @@ export const getPostById = async (req, res) => {
     });
   }
 };
+
+
+//* generate cummunity post by ai 
+
+import main from "../config/gemini.js";
+export const generateComment = async(req,res)=> {
+  try {
+    const {title} = req.body
+    if(!title){
+      return res.status(200).json({
+        success : false,
+        message : "Ai needs title to generate the body"
+      })
+    }
+
+    const content = await main(`${title} . Generate a short community post in this title`)
+     res.status(200).json({
+      success: true,
+      content,
+    });
+  } catch (error) {
+     res.status(500).json({
+      success: false,
+      message: "Error occurred while generating content",
+    });
+  }
+}
